@@ -1,11 +1,15 @@
 {
   "version": 2,
-  "builds": [
-    { "src": "api/*.js", "use": "@vercel/node" }
-  ],
+  "functions": {
+    "api/*.js": {
+      "runtime": "@vercel/node@3.0.0"
+    }
+  },
   "routes": [
     { "src": "/api/get-products", "dest": "/api/get-products.js" },
     { "src": "/api/add-product", "dest": "/api/add-product.js" },
+    { "src": "/", "dest": "/index.html" },
+    { "src": "/admin", "dest": "/admin.html" },
     { "src": "/(.*)", "dest": "/$1" }
   ]
 }
