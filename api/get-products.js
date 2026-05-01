@@ -7,7 +7,7 @@ const supabase = createClient(
 
 module.exports = async (req, res) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  
+
   const { data, error } = await supabase
     .from('products')
     .select('*')
