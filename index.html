@@ -3,64 +3,95 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zubair Hamedov Shop</title>
+  <title>ZB STORE</title>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root{--blue:#2979FF;--blue2:#448AFF;--dark:#080810;--card:#0f0f1a;--border:#1a1a2e;--text:#F0F0FF;--muted:#4a4a6a;--accent:#2979FF}
     *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
     body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--text);min-height:100vh}
-    header{position:sticky;top:0;z-index:100;background:rgba(8,8,16,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:13px 18px;display:flex;align-items:center;justify-content:space-between}
+
+    header{position:sticky;top:0;z-index:100;background:rgba(8,8,16,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:12px 18px;display:flex;align-items:center;justify-content:space-between}
     .logo{display:flex;align-items:center;gap:10px}
-    .logo-badge{width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#2979FF,#0d47a1);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:white;box-shadow:0 0 16px rgba(41,121,255,0.4)}
-    .logo-text .name{font-family:'Syne',sans-serif;font-size:15px;font-weight:800}
+    .logo img{width:38px;height:38px;border-radius:10px;object-fit:cover;border:1px solid var(--border)}
+    .logo-text .name{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;letter-spacing:-0.5px}
     .logo-text .sub{font-size:11px;color:var(--blue2)}
     .live-badge{display:flex;align-items:center;gap:5px;background:rgba(41,121,255,0.1);border:1px solid rgba(41,121,255,0.3);color:var(--blue2);padding:5px 11px;border-radius:20px;font-size:11px;font-weight:700}
     .live-dot{width:6px;height:6px;background:var(--blue2);border-radius:50%;animation:pulse 1.5s infinite}
     @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(1.4)}}
-    .hero{margin:14px;border-radius:22px;padding:30px 22px;background:linear-gradient(135deg,#0a0a2e 0%,#0d1b4d 50%,#1a237e 100%);position:relative;overflow:hidden;border:1px solid rgba(41,121,255,0.2)}
-    .hero::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(41,121,255,0.15),transparent)}
-    .hero::after{content:'📱';position:absolute;right:10px;bottom:-5px;font-size:100px;opacity:0.12;transform:rotate(10deg)}
-    .hero-tag{display:inline-block;background:rgba(41,121,255,0.15);border:1px solid rgba(41,121,255,0.4);color:var(--blue2);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:12px}
-    .hero h2{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:white;line-height:1.2;margin-bottom:8px}
-    .hero p{color:rgba(255,255,255,0.6);font-size:13px;margin-bottom:18px}
-    .hero-call{display:inline-flex;align-items:center;gap:8px;background:var(--blue);color:white;padding:11px 22px;border-radius:30px;font-weight:700;font-size:14px;text-decoration:none;box-shadow:0 4px 20px rgba(41,121,255,0.5)}
-    .cats{display:flex;gap:8px;padding:16px 14px 4px;overflow-x:auto;scrollbar-width:none}
+
+    .hero{margin:14px;border-radius:22px;padding:28px 22px;background:linear-gradient(135deg,#0a0a2e,#0d1b4d,#1a237e);position:relative;overflow:hidden;border:1px solid rgba(41,121,255,0.15)}
+    .hero::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(41,121,255,0.2),transparent);animation:rotate 8s linear infinite}
+    @keyframes rotate{to{transform:rotate(360deg)}}
+    .hero::after{content:'📱';position:absolute;right:10px;bottom:-5px;font-size:100px;opacity:0.1;transform:rotate(10deg)}
+    .hero-tag{display:inline-block;background:rgba(41,121,255,0.15);border:1px solid rgba(41,121,255,0.4);color:var(--blue2);padding:4px 12px;border-radius:20px;font-size:12px;font-weight:600;margin-bottom:12px;animation:fadeIn 0.8s ease}
+    .hero h2{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:white;line-height:1.2;margin-bottom:8px;animation:slideUp 0.6s ease}
+    .hero p{color:rgba(255,255,255,0.6);font-size:13px;margin-bottom:16px;animation:slideUp 0.7s ease}
+    @keyframes slideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
+    .hero-btns{display:flex;gap:10px;flex-wrap:wrap}
+    .hero-call{display:inline-flex;align-items:center;gap:7px;background:var(--blue);color:white;padding:10px 18px;border-radius:30px;font-weight:700;font-size:13px;text-decoration:none;box-shadow:0 4px 20px rgba(41,121,255,0.5)}
+    .hero-wa{display:inline-flex;align-items:center;gap:7px;background:#25D366;color:white;padding:10px 18px;border-radius:30px;font-weight:700;font-size:13px;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,0.4)}
+
+    .social-bar{display:flex;gap:10px;padding:14px 16px 4px;justify-content:center}
+    .soc-btn{display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:20px;font-size:12px;font-weight:700;text-decoration:none;border:1px solid var(--border);background:var(--card);color:var(--text);transition:all 0.2s}
+    .soc-btn:active{transform:scale(0.96)}
+    .soc-tg{border-color:rgba(41,121,255,0.3);color:#2979FF}
+    .soc-ig{border-color:rgba(225,48,108,0.3);color:#E1306C}
+
+    .search-wrap{padding:12px 16px 4px;position:relative}
+    .search-input{width:100%;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px 16px 12px 42px;color:var(--text);font-size:14px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s}
+    .search-input:focus{border-color:var(--blue)}
+    .search-input::placeholder{color:var(--muted)}
+    .search-icon{position:absolute;left:28px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none}
+
+    .cats{display:flex;gap:8px;padding:12px 14px 4px;overflow-x:auto;scrollbar-width:none}
     .cats::-webkit-scrollbar{display:none}
-    .cat-btn{flex-shrink:0;padding:7px 16px;border-radius:20px;border:1px solid var(--border);background:var(--card);color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif}
+    .cat-btn{flex-shrink:0;padding:7px 14px;border-radius:20px;border:1px solid var(--border);background:var(--card);color:var(--muted);font-size:12px;font-weight:600;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif}
     .cat-btn.active{background:var(--blue);color:white;border-color:var(--blue);box-shadow:0 3px 12px rgba(41,121,255,0.4)}
-    .section-head{padding:16px 18px 12px;display:flex;align-items:center;gap:10px}
-    .section-head h3{font-family:'Syne',sans-serif;font-size:18px;font-weight:800}
+
+    .section-head{padding:14px 18px 10px;display:flex;align-items:center;gap:10px}
+    .section-head h3{font-family:'Syne',sans-serif;font-size:17px;font-weight:800}
     .count-badge{background:var(--blue);color:white;font-size:11px;font-weight:800;padding:2px 9px;border-radius:10px}
-    .products{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0 14px 110px}
+
+    .sort-bar{display:flex;gap:8px;padding:0 16px 10px;overflow-x:auto;scrollbar-width:none}
+    .sort-bar::-webkit-scrollbar{display:none}
+    .sort-btn{flex-shrink:0;padding:5px 12px;border-radius:10px;border:1px solid var(--border);background:none;color:var(--muted);font-size:11px;font-weight:600;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s}
+    .sort-btn.active{background:rgba(41,121,255,0.15);color:var(--blue2);border-color:rgba(41,121,255,0.3)}
+
+    .products{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;padding:0 14px 120px}
     .card{background:var(--card);border-radius:18px;overflow:hidden;border:1px solid var(--border);animation:fadeUp 0.5s ease both;transition:border-color 0.3s,transform 0.2s;cursor:pointer}
     .card:active{transform:scale(0.97);border-color:var(--blue)}
     @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
     .card-img-wrap{position:relative;overflow:hidden}
-    .card-img{width:100%;height:155px;object-fit:cover;display:block;background:#1a1a2e;transition:transform 0.4s}
+    .card-img{width:100%;height:150px;object-fit:cover;display:block;background:#1a1a2e;transition:transform 0.4s}
     .card:active .card-img{transform:scale(1.04)}
-    .card-cat{position:absolute;top:8px;left:8px;background:rgba(41,121,255,0.85);backdrop-filter:blur(4px);color:white;font-size:9px;font-weight:700;padding:3px 8px;border-radius:8px;letter-spacing:0.5px;text-transform:uppercase}
+    .card-cat{position:absolute;top:8px;left:8px;background:rgba(41,121,255,0.85);backdrop-filter:blur(4px);color:white;font-size:9px;font-weight:700;padding:3px 8px;border-radius:8px;text-transform:uppercase}
     .card-body{padding:11px}
-    .card-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+    .card-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
     .card-price{font-family:'Syne',sans-serif;font-size:15px;font-weight:800;color:var(--blue2);margin-bottom:8px}
-    .specs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:10px}
+    .specs{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:9px}
     .spec-tag{background:#0a0a1e;border:1px solid var(--border);color:#6a6a9a;font-size:9px;font-weight:600;padding:3px 7px;border-radius:6px}
     .call-btn{display:flex;align-items:center;justify-content:center;gap:5px;background:linear-gradient(135deg,var(--blue),#1565c0);color:white;text-decoration:none;padding:9px 0;border-radius:10px;font-size:12px;font-weight:700;box-shadow:0 3px 12px rgba(41,121,255,0.3)}
+
     .loading-wrap{grid-column:1/-1;text-align:center;padding:60px 20px}
     .spinner{width:36px;height:36px;border:3px solid var(--border);border-top-color:var(--blue);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto 14px}
     @keyframes spin{to{transform:rotate(360deg)}}
     .loading-wrap p,.empty p{color:var(--muted);font-size:14px}
     .empty{grid-column:1/-1;text-align:center;padding:60px 20px}
     .empty .icon{font-size:52px;margin-bottom:12px}
-    .bottom-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(8,8,16,0.97);border-top:1px solid var(--border);backdrop-filter:blur(16px);padding:12px 20px 22px;display:flex;align-items:center;justify-content:space-between}
-    .bottom-info .label{font-size:11px;color:var(--muted)}
-    .bottom-info .phone{font-family:'Syne',sans-serif;font-size:15px;font-weight:700}
-    .bottom-call{display:flex;align-items:center;gap:7px;background:var(--blue);color:white;padding:12px 20px;border-radius:30px;font-weight:700;font-size:14px;text-decoration:none;box-shadow:0 4px 16px rgba(41,121,255,0.4);animation:glow 2s ease-in-out infinite}
-    @keyframes glow{0%,100%{box-shadow:0 4px 16px rgba(41,121,255,0.4)}50%{box-shadow:0 4px 28px rgba(41,121,255,0.7)}}
-    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(10px);z-index:200;display:none;align-items:flex-end;justify-content:center}
+
+    .bottom-bar{position:fixed;bottom:0;left:0;right:0;background:rgba(8,8,16,0.97);border-top:1px solid var(--border);backdrop-filter:blur(16px);padding:10px 16px 20px}
+    .bottom-contacts{display:flex;gap:8px;justify-content:center}
+    .bc-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;padding:11px;border-radius:14px;font-weight:700;font-size:13px;text-decoration:none;max-width:160px}
+    .bc-call{background:var(--blue);color:white;box-shadow:0 4px 14px rgba(41,121,255,0.4);animation:glow 2s ease-in-out infinite}
+    .bc-wa{background:#25D366;color:white;box-shadow:0 4px 14px rgba(37,211,102,0.3)}
+    .bc-tg{background:#2AABEE;color:white;box-shadow:0 4px 14px rgba(42,171,238,0.3)}
+    @keyframes glow{0%,100%{box-shadow:0 4px 14px rgba(41,121,255,0.4)}50%{box-shadow:0 4px 24px rgba(41,121,255,0.7)}}
+
+    .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.9);backdrop-filter:blur(12px);z-index:200;display:none;align-items:flex-end;justify-content:center}
     .modal-overlay.open{display:flex;animation:fadeIn 0.2s ease}
-    @keyframes fadeIn{from{opacity:0}to{opacity:1}}
-    .modal{background:#0f0f1a;border-radius:24px 24px 0 0;border:1px solid var(--border);border-bottom:none;padding:20px;width:100%;max-height:88vh;overflow-y:auto;animation:slideUp 0.3s ease}
-    @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+    .modal{background:#0f0f1a;border-radius:24px 24px 0 0;border:1px solid var(--border);border-bottom:none;padding:20px;width:100%;max-height:90vh;overflow-y:auto;animation:slideUp2 0.3s ease}
+    @keyframes slideUp2{from{transform:translateY(100%)}to{transform:translateY(0)}}
     .modal-handle{width:40px;height:4px;background:#2a2a4a;border-radius:2px;margin:0 auto 16px}
     .modal-img{width:100%;height:220px;object-fit:cover;border-radius:14px;margin-bottom:14px}
     .modal-cat{display:inline-block;background:rgba(41,121,255,0.15);border:1px solid rgba(41,121,255,0.3);color:var(--blue2);padding:3px 10px;border-radius:10px;font-size:11px;font-weight:700;margin-bottom:8px;text-transform:uppercase}
@@ -70,35 +101,52 @@
     .spec-item{background:#0a0a1e;border:1px solid var(--border);border-radius:12px;padding:10px}
     .spec-item .s-label{font-size:10px;color:var(--muted);margin-bottom:3px;text-transform:uppercase;letter-spacing:0.5px}
     .spec-item .s-val{font-size:13px;font-weight:700;color:var(--text)}
-    .modal-call{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--blue);color:white;padding:15px;border-radius:14px;text-decoration:none;font-weight:700;font-size:16px;margin-bottom:10px;box-shadow:0 4px 20px rgba(41,121,255,0.4)}
-    .modal-close{width:100%;background:#1a1a2e;border:1px solid var(--border);color:var(--muted);padding:12px;border-radius:14px;font-size:14px;font-weight:600;cursor:pointer}
+    .modal-btns{display:flex;flex-direction:column;gap:8px}
+    .modal-call{display:flex;align-items:center;justify-content:center;gap:8px;background:var(--blue);color:white;padding:14px;border-radius:14px;text-decoration:none;font-weight:700;font-size:15px;box-shadow:0 4px 20px rgba(41,121,255,0.4)}
+    .modal-wa{display:flex;align-items:center;justify-content:center;gap:8px;background:#25D366;color:white;padding:14px;border-radius:14px;text-decoration:none;font-weight:700;font-size:15px}
+    .modal-tg{display:flex;align-items:center;justify-content:center;gap:8px;background:#2AABEE;color:white;padding:14px;border-radius:14px;text-decoration:none;font-weight:700;font-size:15px}
+    .modal-close{width:100%;background:#1a1a2e;border:1px solid var(--border);color:var(--muted);padding:12px;border-radius:14px;font-size:14px;font-weight:600;cursor:pointer;margin-top:4px}
   </style>
 </head>
 <body>
   <header>
     <div class="logo">
-      <div class="logo-badge">ZH</div>
+      <img src="https://ljgxumoznuiwgeqpygni.supabase.co/storage/v1/object/public/products/IMG_5712.jpeg" alt="ZB Store">
       <div class="logo-text">
-        <div class="name">Zubair Hamedov</div>
-        <div class="sub">Shop • Tech Store</div>
+        <div class="name">ZB STORE</div>
+        <div class="sub">Tech & Elektronika</div>
       </div>
     </div>
     <div class="live-badge"><div class="live-dot"></div>LIVE</div>
   </header>
 
   <div class="hero">
-    <div class="hero-tag">⚡ Tech Store</div>
+    <div class="hero-tag">⚡ ZB STORE</div>
     <h2>Eng yaxshi<br>texnologiya</h2>
-    <p>Telefon, noutbuk, aksessuar va boshqa</p>
-    <a class="hero-call" href="tel:+996554758525">📞 Bog'lanish</a>
+    <p>Telefon, noutbuk, naushnik va boshqa</p>
+    <div class="hero-btns">
+      <a class="hero-call" href="tel:+996554758525">📞 Qo'ng'iroq</a>
+      <a class="hero-wa" href="https://wa.me/996554758525">💬 WhatsApp</a>
+    </div>
+  </div>
+
+  <div class="social-bar">
+    <a class="soc-btn soc-tg" href="https://t.me/+996554758525" target="_blank">✈️ Telegram</a>
+    <a class="soc-btn soc-ig" href="https://instagram.com/hamedovv_7" target="_blank">📸 Instagram</a>
+  </div>
+
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input class="search-input" id="search" placeholder="Mahsulot qidirish..." oninput="renderProducts()">
   </div>
 
   <div class="cats">
-    <button class="cat-btn active" onclick="filterCat('all')">🏠 Barchasi</button>
-    <button class="cat-btn" onclick="filterCat('telefon')">📱 Telefon</button>
-    <button class="cat-btn" onclick="filterCat('aksessuar')">🎧 Aksessuar</button>
-    <button class="cat-btn" onclick="filterCat('noutbuk')">💻 Noutbuk</button>
-    <button class="cat-btn" onclick="filterCat('planshet')">📟 Planshet</button>
+    <button class="cat-btn active" onclick="filterCat('all',this)">🏠 Barchasi</button>
+    <button class="cat-btn" onclick="filterCat('telefon',this)">📱 Telefon</button>
+    <button class="cat-btn" onclick="filterCat('naushnik',this)">🎧 Naushnik</button>
+    <button class="cat-btn" onclick="filterCat('steklo',this)">🛡️ Steklo</button>
+    <button class="cat-btn" onclick="filterCat('chehol',this)">📦 Chehol</button>
+    <button class="cat-btn" onclick="filterCat('noutbuk',this)">💻 Noutbuk</button>
   </div>
 
   <div class="section-head">
@@ -106,16 +154,22 @@
     <span class="count-badge" id="count">0</span>
   </div>
 
+  <div class="sort-bar">
+    <button class="sort-btn active" onclick="sortBy('new',this)">🆕 Yangi</button>
+    <button class="sort-btn" onclick="sortBy('cheap',this)">💰 Arzon</button>
+    <button class="sort-btn" onclick="sortBy('expensive',this)">💎 Qimmat</button>
+  </div>
+
   <div class="products" id="products">
     <div class="loading-wrap"><div class="spinner"></div><p>Yuklanmoqda...</p></div>
   </div>
 
   <div class="bottom-bar">
-    <div class="bottom-info">
-      <div class="label">Savol? Qo'ng'iroq qiling</div>
-      <div class="phone">+996 55 475 85 25</div>
+    <div class="bottom-contacts">
+      <a class="bc-btn bc-call" href="tel:+996554758525">📞 Call</a>
+      <a class="bc-btn bc-wa" href="https://wa.me/996554758525">💬 WA</a>
+      <a class="bc-btn bc-tg" href="https://t.me/+996554758525">✈️ TG</a>
     </div>
-    <a class="bottom-call" href="tel:+996554758525">📞 Aloqa</a>
   </div>
 
   <div class="modal-overlay" id="modal" onclick="closeModal(event)">
@@ -126,46 +180,59 @@
       <div class="modal-name" id="m-name"></div>
       <div class="modal-price" id="m-price"></div>
       <div class="specs-grid" id="m-specs"></div>
-      <a class="modal-call" id="m-call" href="">📞 Qo'ng'iroq qilish</a>
-      <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">Yopish</button>
+      <div class="modal-btns">
+        <a class="modal-call" id="m-call" href="">📞 Qo'ng'iroq qilish</a>
+        <a class="modal-wa" id="m-wa" href="">💬 WhatsApp</a>
+        <a class="modal-tg" id="m-tg" href="">✈️ Telegram</a>
+        <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">✕ Yopish</button>
+      </div>
     </div>
   </div>
 
   <script>
-    let allProducts = [];
-    let currentCat = 'all';
+    let allProducts=[];
+    let currentCat='all';
+    let currentSort='new';
 
-    async function loadProducts() {
-      try {
-        const res = await fetch('/api/get-products');
-        allProducts = await res.json();
+    async function loadProducts(){
+      try{
+        const res=await fetch('/api/get-products');
+        allProducts=await res.json();
         renderProducts();
-      } catch(e) {
-        document.getElementById('products').innerHTML = '<div class="empty"><div class="icon">⚠️</div><p>Xatolik yuz berdi</p></div>';
+      }catch(e){
+        document.getElementById('products').innerHTML='<div class="empty"><div class="icon">⚠️</div><p>Xatolik yuz berdi</p></div>';
       }
     }
 
-    function filterCat(cat) {
-      currentCat = cat;
-      document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-      event.target.classList.add('active');
+    function filterCat(cat,btn){
+      currentCat=cat;
+      document.querySelectorAll('.cat-btn').forEach(b=>b.classList.remove('active'));
+      if(btn)btn.classList.add('active');
       renderProducts();
     }
 
-    function renderProducts() {
-      const container = document.getElementById('products');
-      const filtered = currentCat === 'all' ? allProducts : allProducts.filter(p => p.category === currentCat);
-      document.getElementById('count').textContent = filtered.length;
-      if (!filtered.length) {
-        container.innerHTML = '<div class="empty"><div class="icon">📦</div><p>Hozircha mahsulot yo\'q</p></div>';
-        return;
-      }
-      const catEmoji = {telefon:'📱',aksessuar:'🎧',noutbuk:'💻',planshet:'📟'};
-      container.innerHTML = filtered.map((p,i) => `
-        <div class="card" style="animation-delay:${i*0.06}s" onclick="openModal('${p.id}')">
+    function sortBy(type,btn){
+      currentSort=type;
+      document.querySelectorAll('.sort-btn').forEach(b=>b.classList.remove('active'));
+      if(btn)btn.classList.add('active');
+      renderProducts();
+    }
+
+    function renderProducts(){
+      const search=document.getElementById('search').value.toLowerCase();
+      let filtered=currentCat==='all'?[...allProducts]:allProducts.filter(p=>p.category===currentCat);
+      if(search)filtered=filtered.filter(p=>p.name.toLowerCase().includes(search));
+      if(currentSort==='cheap')filtered.sort((a,b)=>Number(a.price)-Number(b.price));
+      else if(currentSort==='expensive')filtered.sort((a,b)=>Number(b.price)-Number(a.price));
+      document.getElementById('count').textContent=filtered.length;
+      const catEmoji={telefon:'📱',naushnik:'🎧',steklo:'🛡️',chehol:'📦',noutbuk:'💻'};
+      const container=document.getElementById('products');
+      if(!filtered.length){container.innerHTML='<div class="empty"><div class="icon">📦</div><p>Hozircha mahsulot yo\'q</p></div>';return}
+      container.innerHTML=filtered.map((p,i)=>`
+        <div class="card" style="animation-delay:${i*0.05}s" onclick="openModal('${p.id}')">
           <div class="card-img-wrap">
             <img class="card-img" src="${p.image_url}" alt="${p.name}" onerror="this.style.background='#1a1a2e'">
-            <div class="card-cat">${catEmoji[p.category]||'📦'} ${p.category||'telefon'}</div>
+            <div class="card-cat">${catEmoji[p.category]||'📦'} ${p.category||''}</div>
           </div>
           <div class="card-body">
             <div class="card-name">${p.name}</div>
@@ -181,24 +248,22 @@
       `).join('');
     }
 
-    function openModal(id) {
-      const p = allProducts.find(x => x.id === id);
-      if (!p) return;
-      const catEmoji = {telefon:'📱',aksessuar:'🎧',noutbuk:'💻',planshet:'📟'};
-      document.getElementById('m-img').src = p.image_url;
-      document.getElementById('m-cat').textContent = (catEmoji[p.category]||'📦') + ' ' + (p.category||'telefon');
-      document.getElementById('m-name').textContent = p.name;
-      document.getElementById('m-price').textContent = Number(p.price).toLocaleString() + ' so\'m';
-      document.getElementById('m-call').href = 'tel:' + p.phone;
-      const specs = [{l:'Processor',v:p.processor},{l:'RAM',v:p.ram},{l:'Storage',v:p.storage},{l:'Display',v:p.display},{l:'Camera',v:p.camera},{l:'Battery',v:p.battery}].filter(s=>s.v);
-      document.getElementById('m-specs').innerHTML = specs.map(s=>`<div class="spec-item"><div class="s-label">${s.l}</div><div class="s-val">${s.v}</div></div>`).join('');
+    function openModal(id){
+      const p=allProducts.find(x=>x.id===id);if(!p)return;
+      const catEmoji={telefon:'📱',naushnik:'🎧',steklo:'🛡️',chehol:'📦',noutbuk:'💻'};
+      document.getElementById('m-img').src=p.image_url;
+      document.getElementById('m-cat').textContent=(catEmoji[p.category]||'📦')+' '+(p.category||'');
+      document.getElementById('m-name').textContent=p.name;
+      document.getElementById('m-price').textContent=Number(p.price).toLocaleString()+' so\'m';
+      document.getElementById('m-call').href='tel:'+p.phone;
+      document.getElementById('m-wa').href='https://wa.me/'+p.phone.replace(/\D/g,'');
+      document.getElementById('m-tg').href='https://t.me/+'+p.phone.replace(/\D/g,'');
+      const specs=[{l:'Processor',v:p.processor},{l:'RAM',v:p.ram},{l:'Storage',v:p.storage},{l:'Display',v:p.display},{l:'Camera',v:p.camera},{l:'Battery',v:p.battery}].filter(s=>s.v);
+      document.getElementById('m-specs').innerHTML=specs.map(s=>`<div class="spec-item"><div class="s-label">${s.l}</div><div class="s-val">${s.v}</div></div>`).join('');
       document.getElementById('modal').classList.add('open');
     }
 
-    function closeModal(e) {
-      if (e.target === document.getElementById('modal')) document.getElementById('modal').classList.remove('open');
-    }
-
+    function closeModal(e){if(e.target===document.getElementById('modal'))document.getElementById('modal').classList.remove('open')}
     loadProducts();
   </script>
 </body>
