@@ -19,15 +19,18 @@ module.exports = async (req, res) => {
   }
 
   if (req.method === 'PUT') {
-    const { id, name, price, phone, ram, storage, display, camera, battery, processor, category, subcategory } = req.body;
-    const { error } = await supabase.from('products').update({ name, price, phone, ram, storage, display, camera, battery, processor, category, subcategory }).eq('id', id);
+    const { id, name, price, phone, ram, storage, display, camera, battery, processor, category, connection_type, compatibility, case_type, glass_type, glass_privacy } = req.body;
+    const { error } = await supabase.from('products').update({
+      name, price, phone, ram, storage, display, camera, battery, processor, category,
+      connection_type, compatibility, case_type, glass_type, glass_privacy
+    }).eq('id', id);
     if (error) return res.status(500).json({ error: error.message });
     return res.status(200).json({ success: true });
   }
 
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { name, price, phone, imageBase64, imageExt, ram, storage, display, camera, battery, processor, category, subcategory } = req.body;
+  const { name, price, phone, imageBase64, imageExt, ram, storage, display, camera, battery, processor, category, connection_type, compatibility, case_type, glass_type, glass_privacy } = req.body;
   if (!name || !price || !phone || !imageBase64) return res.status(400).json({ error: "Maydonlarni to'ldiring!" });
 
   const fileName = `${Date.now()}.${imageExt || 'jpg'}`;
@@ -36,7 +39,12 @@ module.exports = async (req, res) => {
   if (uploadError) return res.status(500).json({ error: uploadError.message });
 
   const { data: urlData } = supabase.storage.from('products').getPublicUrl(fileName);
-  const { error: dbError } = await supabase.from('products').insert([{ name, price, phone, image_url: urlData.publicUrl, ram, storage, display, camera, battery, processor, category: category || 'telefon', subcategory: subcategory || '' }]);
+  const { error: dbError } = await supabase.from('products').insert([{
+    name, price, phone, image_url: urlData.publicUrl,
+    ram, storage, display, camera, battery, processor,
+    category: category || 'telefon',
+    connection_type, compatibility, case_type, glass_type, glass_privacy
+  }]);
   if (dbError) return res.status(500).json({ error: dbError.message });
   res.status(200).json({ success: true });
 };
