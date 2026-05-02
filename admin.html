@@ -3,40 +3,47 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Admin — ZH Shop</title>
+  <title>Admin — ZB Store</title>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root{--blue:#2979FF;--blue2:#448AFF;--dark:#080810;--card:#0f0f1a;--border:#1a1a2e;--text:#F0F0FF;--muted:#4a4a6a;--red:#FF4444;--green:#00C853}
     *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
     body{font-family:'DM Sans',sans-serif;background:var(--dark);color:var(--text);min-height:100vh}
-    #login-screen{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px}
-    .lock-icon{font-size:64px;margin-bottom:20px;filter:drop-shadow(0 0 20px rgba(41,121,255,0.5))}
-    #login-screen h2{font-family:'Syne',sans-serif;font-size:28px;font-weight:800;margin-bottom:6px}
-    #login-screen p{color:var(--muted);font-size:14px;margin-bottom:32px}
+
+    #login-screen{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:24px;background:radial-gradient(ellipse at top,#0d1b4d,var(--dark))}
+    .login-logo{width:80px;height:80px;border-radius:20px;object-fit:cover;margin-bottom:16px;border:2px solid var(--border);box-shadow:0 0 30px rgba(41,121,255,0.3)}
+    #login-screen h2{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;margin-bottom:4px}
+    #login-screen p{color:var(--muted);font-size:14px;margin-bottom:28px}
     .input-wrap{width:100%;max-width:340px;position:relative;margin-bottom:14px}
-    .input-wrap input{width:100%;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:15px 48px 15px 16px;color:var(--text);font-size:16px;font-family:'DM Sans',sans-serif;outline:none;letter-spacing:2px;transition:border-color 0.2s}
+    .input-wrap input{width:100%;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:15px 48px 15px 16px;color:var(--text);font-size:16px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s}
     .input-wrap input:focus{border-color:var(--blue);box-shadow:0 0 0 2px rgba(41,121,255,0.15)}
-    .eye-btn{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer}
-    .login-btn{width:100%;max-width:340px;background:linear-gradient(135deg,var(--blue),#1565c0);color:white;border:none;border-radius:14px;padding:15px;font-size:16px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;box-shadow:0 4px 20px rgba(41,121,255,0.4)}
-    .shake{animation:shake 0.4s ease}
+    .input-wrap input.error{border-color:var(--red);animation:shake 0.4s ease}
     @keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
-    .error-msg{color:var(--red);font-size:13px;margin-top:10px;display:none;text-align:center}
+    .eye-btn{position:absolute;right:14px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--muted);font-size:20px;cursor:pointer}
+    .login-btn{width:100%;max-width:340px;background:linear-gradient(135deg,var(--blue),#1565c0);color:white;border:none;border-radius:14px;padding:15px;font-size:16px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;box-shadow:0 4px 20px rgba(41,121,255,0.4);transition:opacity 0.2s}
+    .login-btn:active{opacity:0.8}
+    .error-msg{color:var(--red);font-size:13px;margin-top:10px;display:none;text-align:center;animation:fadeIn 0.3s ease}
+    @keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+
     #admin-screen{display:none}
-    header{position:sticky;top:0;z-index:100;background:rgba(8,8,16,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:13px 18px;display:flex;align-items:center;justify-content:space-between}
+    header{position:sticky;top:0;z-index:100;background:rgba(8,8,16,0.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:12px 18px;display:flex;align-items:center;justify-content:space-between}
     .logo{display:flex;align-items:center;gap:10px}
-    .logo-badge{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,#2979FF,#0d47a1);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:14px;font-weight:800;color:white;box-shadow:0 0 12px rgba(41,121,255,0.4)}
+    .logo img{width:36px;height:36px;border-radius:9px;object-fit:cover;border:1px solid var(--border)}
     .logo-text .name{font-family:'Syne',sans-serif;font-size:15px;font-weight:800}
     .logo-text .sub{font-size:11px;color:var(--blue2)}
     .logout-btn{background:rgba(255,68,68,0.1);border:1px solid rgba(255,68,68,0.25);color:var(--red);padding:7px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer}
+
     .stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px}
     .stat-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:14px}
     .stat-card .s-label{font-size:11px;color:var(--muted);margin-bottom:4px}
     .stat-card .s-val{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--blue)}
+
     .tabs{display:flex;gap:0;margin:0 16px 16px;background:var(--card);border-radius:12px;padding:4px;border:1px solid var(--border)}
     .tab-btn{flex:1;padding:9px;border:none;background:none;color:var(--muted);font-size:13px;font-weight:600;border-radius:9px;cursor:pointer;font-family:'DM Sans',sans-serif;transition:all 0.2s}
     .tab-btn.active{background:var(--blue);color:white;box-shadow:0 2px 8px rgba(41,121,255,0.4)}
     .tab-content{display:none}
     .tab-content.active{display:block}
+
     .form-section{padding:0 16px 16px}
     .form-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;margin-bottom:16px}
     .field{margin-bottom:12px}
@@ -46,6 +53,7 @@
     .field input::placeholder{color:#2a2a4a}
     .field select option{background:#0f0f1a}
     .specs-grid-form{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+
     .img-upload{width:100%;border:2px dashed var(--border);border-radius:14px;padding:24px 20px;text-align:center;cursor:pointer;position:relative;overflow:hidden;transition:border-color 0.2s}
     .img-upload:active{border-color:var(--blue)}
     .img-upload input{position:absolute;inset:0;opacity:0;cursor:pointer}
@@ -55,39 +63,47 @@
     #preview-wrap{display:none;margin-top:12px;position:relative}
     #preview-wrap img{width:100%;border-radius:12px;max-height:200px;object-fit:cover}
     .remove-img{position:absolute;top:8px;right:8px;background:rgba(255,68,68,0.9);color:white;border:none;border-radius:50%;width:28px;height:28px;font-size:14px;cursor:pointer}
-    .submit-btn{width:100%;background:linear-gradient(135deg,var(--blue),#1565c0);color:white;border:none;border-radius:14px;padding:15px;font-size:16px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:8px;box-shadow:0 4px 16px rgba(41,121,255,0.35)}
+
+    .submit-btn{width:100%;background:linear-gradient(135deg,var(--blue),#1565c0);color:white;border:none;border-radius:14px;padding:15px;font-size:16px;font-weight:700;font-family:'DM Sans',sans-serif;cursor:pointer;margin-top:8px;box-shadow:0 4px 16px rgba(41,121,255,0.35);transition:opacity 0.2s}
     .submit-btn:disabled{opacity:0.5}
+
     .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);padding:12px 24px;border-radius:30px;font-weight:700;font-size:14px;transition:transform 0.3s ease;z-index:999;white-space:nowrap;background:var(--blue);color:white}
     .toast.error-toast{background:var(--red)}
     .toast.show{transform:translateX(-50%) translateY(0)}
+
     .list-section{padding:0 16px 100px}
     .list-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;margin-bottom:14px}
-    .prod-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin-bottom:10px;display:flex;gap:12px;align-items:center}
+    .prod-item{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:12px;margin-bottom:10px;display:flex;gap:12px;align-items:center;animation:fadeUp 0.4s ease both}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
     .prod-item img{width:64px;height:64px;border-radius:10px;object-fit:cover;background:#1a1a2e;flex-shrink:0}
     .prod-info{flex:1;min-width:0}
     .prod-info .p-name{font-size:14px;font-weight:700;margin-bottom:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
     .prod-info .p-price{color:var(--blue2);font-weight:700;font-size:13px;margin-bottom:2px}
     .prod-info .p-cat{color:var(--muted);font-size:11px}
     .item-btns{display:flex;flex-direction:column;gap:6px;flex-shrink:0}
-    .edit-btn{background:rgba(41,121,255,0.1);border:1px solid rgba(41,121,255,0.2);color:var(--blue2);padding:6px 10px;border-radius:8px;font-size:14px;cursor:pointer}
-    .delete-btn{background:rgba(255,68,68,0.1);border:1px solid rgba(255,68,68,0.2);color:var(--red);padding:6px 10px;border-radius:8px;font-size:14px;cursor:pointer}
+    .edit-btn{background:rgba(41,121,255,0.1);border:1px solid rgba(41,121,255,0.2);color:var(--blue2);padding:7px 10px;border-radius:8px;font-size:14px;cursor:pointer;transition:background 0.2s}
+    .delete-btn{background:rgba(255,68,68,0.1);border:1px solid rgba(255,68,68,0.2);color:var(--red);padding:7px 10px;border-radius:8px;font-size:14px;cursor:pointer;transition:background 0.2s}
+    .edit-btn:active{background:rgba(41,121,255,0.25)}
+    .delete-btn:active{background:rgba(255,68,68,0.25)}
+
     .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(10px);z-index:200;display:none;align-items:flex-end;justify-content:center}
-    .modal-overlay.open{display:flex}
-    .edit-modal{background:#0f0f1a;border-radius:24px 24px 0 0;border:1px solid var(--border);border-bottom:none;padding:20px;width:100%;max-height:88vh;overflow-y:auto}
+    .modal-overlay.open{display:flex;animation:fadeIn 0.2s ease}
+    .edit-modal{background:#0f0f1a;border-radius:24px 24px 0 0;border:1px solid var(--border);border-bottom:none;padding:20px;width:100%;max-height:88vh;overflow-y:auto;animation:slideUp 0.3s ease}
+    @keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
     .modal-handle{width:40px;height:4px;background:#2a2a4a;border-radius:2px;margin:0 auto 16px}
     .modal-title{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;margin-bottom:16px}
-    .save-btn{width:100%;background:linear-gradient(135deg,var(--blue),#1565c0);color:white;border:none;border-radius:14px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px}
-    .cancel-btn{width:100%;background:#1a1a2e;border:1px solid var(--border);color:var(--muted);padding:12px;border-radius:14px;font-size:14px;font-weight:600;cursor:pointer;margin-top:8px}
+    .save-btn{width:100%;background:linear-gradient(135deg,var(--blue),#1565c0);color:white;border:none;border-radius:14px;padding:14px;font-size:15px;font-weight:700;cursor:pointer;margin-top:8px;font-family:'DM Sans',sans-serif}
+    .cancel-btn{width:100%;background:#1a1a2e;border:1px solid var(--border);color:var(--muted);padding:12px;border-radius:14px;font-size:14px;font-weight:600;cursor:pointer;margin-top:8px;font-family:'DM Sans',sans-serif}
   </style>
 </head>
 <body>
 
 <div id="login-screen">
-  <div class="lock-icon">🔐</div>
-  <h2>Admin Panel</h2>
-  <p>Zubair Hamedov Shop</p>
-  <div class="input-wrap" id="pwd-wrap">
-    <input type="password" id="pwd-input" placeholder="Parol..." />
+  <img class="login-logo" src="https://ljgxumoznuiwgeqpygni.supabase.co/storage/v1/object/public/products/IMG_5712.jpeg" alt="ZB Store">
+  <h2>ZB STORE</h2>
+  <p>Admin Panel</p>
+  <div class="input-wrap">
+    <input type="password" id="pwd-input" placeholder="Parol..."/>
     <button class="eye-btn" onclick="toggleEye()">👁</button>
   </div>
   <button class="login-btn" onclick="checkLogin()">Kirish →</button>
@@ -97,10 +113,10 @@
 <div id="admin-screen">
   <header>
     <div class="logo">
-      <div class="logo-badge">ZH</div>
+      <img src="https://ljgxumoznuiwgeqpygni.supabase.co/storage/v1/object/public/products/IMG_5712.jpeg" alt="ZB">
       <div class="logo-text">
         <div class="name">Admin Panel</div>
-        <div class="sub">ZH Shop</div>
+        <div class="sub">ZB Store</div>
       </div>
     </div>
     <button class="logout-btn" onclick="logout()">Chiqish</button>
@@ -128,15 +144,16 @@
       <div class="field"><label>Kategoriya</label>
         <select id="p-cat">
           <option value="telefon">📱 Telefon</option>
-          <option value="aksessuar">🎧 Aksessuar</option>
+          <option value="naushnik">🎧 Naushnik</option>
+          <option value="steklo">🛡️ Steklo</option>
+          <option value="chehol">📦 Chehol</option>
           <option value="noutbuk">💻 Noutbuk</option>
-          <option value="planshet">📟 Planshet</option>
         </select>
       </div>
       <div class="field"><label>Mahsulot nomi</label><input type="text" id="p-name" placeholder="iPhone 15 Pro Max"/></div>
       <div class="field"><label>Narxi (so'm)</label><input type="number" id="p-price" placeholder="12000000"/></div>
       <div class="field"><label>Telefon raqam</label><input type="tel" id="p-phone" placeholder="+996554758525"/></div>
-      <div class="field"><label>Характеристикалар</label></div>
+      <div class="field"><label>Характеристикалар (ixtiyoriy)</label></div>
       <div class="specs-grid-form">
         <div class="field" style="margin:0"><label>Processor</label><input type="text" id="p-processor" placeholder="A17 Pro"/></div>
         <div class="field" style="margin:0"><label>RAM</label><input type="text" id="p-ram" placeholder="8GB"/></div>
@@ -177,9 +194,10 @@
     <div class="field"><label>Kategoriya</label>
       <select id="e-cat">
         <option value="telefon">📱 Telefon</option>
-        <option value="aksessuar">🎧 Aksessuar</option>
+        <option value="naushnik">🎧 Naushnik</option>
+        <option value="steklo">🛡️ Steklo</option>
+        <option value="chehol">📦 Chehol</option>
         <option value="noutbuk">💻 Noutbuk</option>
-        <option value="planshet">📟 Planshet</option>
       </select>
     </div>
     <div class="field"><label>Nomi</label><input type="text" id="e-name"/></div>
@@ -204,10 +222,21 @@
   let adminPassword='';
   let products=[];
 
-  function checkLogin(){
+  async function checkLogin(){
     const pwd=document.getElementById('pwd-input').value;
     if(!pwd)return;
+    const inp=document.getElementById('pwd-input');
+    try{
+      const res=await fetch('/api/add-product',{method:'DELETE',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:pwd,id:'check-only-00000000-0000-0000-0000-000000000000'})});
+      if(res.status===401){
+        inp.classList.add('error');
+        document.getElementById('err-msg').style.display='block';
+        setTimeout(()=>inp.classList.remove('error'),400);
+        return;
+      }
+    }catch(e){}
     adminPassword=pwd;
+    document.getElementById('err-msg').style.display='none';
     document.getElementById('login-screen').style.display='none';
     document.getElementById('admin-screen').style.display='block';
     loadProducts();
@@ -226,13 +255,6 @@
     const price=document.getElementById('p-price').value.trim();
     const phone=document.getElementById('p-phone').value.trim();
     const file=document.getElementById('img-input').files[0];
-    const category=document.getElementById('p-cat').value;
-    const ram=document.getElementById('p-ram').value.trim();
-    const storage=document.getElementById('p-storage').value.trim();
-    const display=document.getElementById('p-display').value.trim();
-    const camera=document.getElementById('p-camera').value.trim();
-    const battery=document.getElementById('p-battery').value.trim();
-    const processor=document.getElementById('p-processor').value.trim();
     if(!name||!price||!phone||!file){showToast("❌ Asosiy maydonlarni to'ldiring!",true);return}
     const btn=document.getElementById('submit-btn');
     btn.disabled=true;btn.textContent='⏳ Yuklanmoqda...';
@@ -241,7 +263,7 @@
       const base64=e.target.result.split(',')[1];
       const ext=file.name.split('.').pop().toLowerCase();
       try{
-        const res=await fetch('/api/add-product',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:adminPassword,name,price,phone,imageBase64:base64,imageExt:ext,ram,storage,display,camera,battery,processor,category})});
+        const res=await fetch('/api/add-product',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:adminPassword,name,price,phone,imageBase64:base64,imageExt:ext,ram:document.getElementById('p-ram').value.trim(),storage:document.getElementById('p-storage').value.trim(),display:document.getElementById('p-display').value.trim(),camera:document.getElementById('p-camera').value.trim(),battery:document.getElementById('p-battery').value.trim(),processor:document.getElementById('p-processor').value.trim(),category:document.getElementById('p-cat').value})});
         const data=await res.json();
         if(data.success){showToast("✅ Mahsulot qo'shildi!");['p-name','p-price','p-phone','p-ram','p-storage','p-display','p-camera','p-battery','p-processor'].forEach(id=>document.getElementById(id).value='');removeImg();loadProducts()}
         else showToast('❌ '+(data.error||'Xatolik'),true);
@@ -269,9 +291,8 @@
 
   async function saveEdit(){
     const id=document.getElementById('e-id').value;
-    const body={password:adminPassword,id,category:document.getElementById('e-cat').value,name:document.getElementById('e-name').value,price:document.getElementById('e-price').value,phone:document.getElementById('e-phone').value,processor:document.getElementById('e-processor').value,ram:document.getElementById('e-ram').value,storage:document.getElementById('e-storage').value,display:document.getElementById('e-display').value,camera:document.getElementById('e-camera').value,battery:document.getElementById('e-battery').value};
     try{
-      const res=await fetch('/api/add-product',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)});
+      const res=await fetch('/api/add-product',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:adminPassword,id,category:document.getElementById('e-cat').value,name:document.getElementById('e-name').value,price:document.getElementById('e-price').value,phone:document.getElementById('e-phone').value,processor:document.getElementById('e-processor').value,ram:document.getElementById('e-ram').value,storage:document.getElementById('e-storage').value,display:document.getElementById('e-display').value,camera:document.getElementById('e-camera').value,battery:document.getElementById('e-battery').value})});
       const data=await res.json();
       if(data.success){showToast('✅ Saqlandi!');document.getElementById('edit-modal').classList.remove('open');loadProducts()}
       else showToast('❌ '+(data.error||'Xatolik'),true);
@@ -293,16 +314,16 @@
       const res=await fetch('/api/get-products');
       products=await res.json();
       document.getElementById('total-count').textContent=products.length;
-      const catEmoji={telefon:'📱',aksessuar:'🎧',noutbuk:'💻',planshet:'📟'};
+      const catEmoji={telefon:'📱',naushnik:'🎧',steklo:'🛡️',chehol:'📦',noutbuk:'💻'};
       const list=document.getElementById('prod-list');
-      if(!products.length){list.innerHTML='<p style="color:var(--muted);font-size:14px">Hozircha mahsulot yo\'q</p>';return}
-      list.innerHTML=products.map(p=>`
-        <div class="prod-item">
+      if(!products.length){list.innerHTML='<p style="color:var(--muted);font-size:14px;padding:20px 0">Hozircha mahsulot yo\'q</p>';return}
+      list.innerHTML=products.map((p,i)=>`
+        <div class="prod-item" style="animation-delay:${i*0.05}s">
           <img src="${p.image_url}" alt="${p.name}" onerror="this.style.background='#1a1a2e'">
           <div class="prod-info">
             <div class="p-name">${p.name}</div>
             <div class="p-price">${Number(p.price).toLocaleString()} so'm</div>
-            <div class="p-cat">${catEmoji[p.category]||'📦'} ${p.category||'telefon'}</div>
+            <div class="p-cat">${catEmoji[p.category]||'📦'} ${p.category||''}</div>
           </div>
           <div class="item-btns">
             <button class="edit-btn" onclick="openEdit('${p.id}')">✏️</button>
